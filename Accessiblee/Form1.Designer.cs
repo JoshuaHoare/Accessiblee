@@ -42,7 +42,6 @@ namespace Accessiblee
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.timer1 = new Timer(this.components);
 
             // Set border to nothing
             this.FormBorderStyle = FormBorderStyle.None;
@@ -55,11 +54,6 @@ namespace Accessiblee
             // Maximize the window
             this.WindowState = FormWindowState.Maximized;
 
-            //Timer
-
-            timer1.Enabled = true;
-            timer1.Interval = 10;
-            timer1.Tick += new System.EventHandler(timer1_Tick);
 
             this.Name = "Form1";
             this.Text = "Form1";
@@ -68,8 +62,6 @@ namespace Accessiblee
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer timer1;
 
     }
 }

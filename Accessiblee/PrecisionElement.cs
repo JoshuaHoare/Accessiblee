@@ -11,7 +11,7 @@ namespace Accessiblee
     {     
         Form1 form; 
 
-        public PrecisionElement(Form1 _form)
+        public PrecisionElement(Form1 _form) 
         {    
                  
             form = _form; 
@@ -23,35 +23,31 @@ namespace Accessiblee
             var result = Math.Sqrt(Math.Pow((from.X - to.X), 2) + Math.Pow((from.Y - to.Y) , 2 ));
             return result; 
         }
-             
-        Point lastPos;
-        Point eyePosition;
-        Point cursorPosition;
-        bool triggerMovement = false;
 
-        protected override void OnPaint(PaintEventArgs pevent)
-        {
-            eyePosition = new Point(form.x, form.y); 
-            cursorPosition = Cursor.Position;   
-                 
-            if (DistanceTo(Location, eyePosition) <= 250)  
+        Point eyePosition;
+        Point cursorPosition;   
+        bool triggerMovement = false;   
+
+        protected override void OnPaint(PaintEventArgs pevent) 
+        { 
+            eyePosition = form.point;   
+            cursorPosition = Cursor.Position;
+
+            Debug.WriteLine("ff");
+
+            if (DistanceTo(Location, eyePosition) <= 150)  
             { 
                 Debug.WriteLine("buffered"); 
                 triggerMovement = false;
             }
-            else if (!triggerMovement)
-            {
-                triggerMovement = true;
-            }
             else
             {
-                lastPos = eyePosition;
                 Location = new Point(form.x - (Width / 2), form.y - (Width / 2));
             }
 
             base.OnPaint(pevent);
             
-            Graphics g = pevent.Graphics;
+            Graphics g = pevent.Graphics;  
             g.SmoothingMode = SmoothingMode.AntiAlias;
              
             // Outer circle (border)
@@ -63,7 +59,6 @@ namespace Accessiblee
                 g.DrawEllipse(borderPen, 0, 0, Width - borderWidth, Height - borderWidth);
             }
 
-            Debug.WriteLine("REEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
             // Inner circle (transparent)
             // The inner circle is created by the empty space within the outer circle.
         }

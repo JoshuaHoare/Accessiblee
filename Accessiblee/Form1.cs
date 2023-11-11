@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
+using System.Linq; 
+using System.Text; 
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,16 +13,18 @@ namespace Accessiblee
 {  
 public partial class Form1 : Form
     {
-        public int x = 100; // X coordinate for the dot
-        public int y = 100; // Y coordinate for the dot
+        public Point point;
+        public int x;
+        public int y;
+
         private int dotSize = 10; // Size of the dot
 
          public Form1()
         {
-            InitializeComponent();
+            InitializeComponent();  
             InitializePrecisionElement();
             this.Paint += new PaintEventHandler(Form1_Paint); // Su bscribe to the Paint event
-        }
+        }   
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {   
@@ -39,10 +41,11 @@ public partial class Form1 : Form
 
         }
          // Method to update  the dot's position and repaint
-        public void UpdateDotPosition(int newX, int newY)
+        public void UpdateDotPosition(Point _point)  
         {
-            x = newX;
-            y = newY;
+            this.point = _point;
+            x = _point.X;
+            y = _point.Y;
 
             this.Invalidate();
             _precisionElement.Invalidate();
@@ -58,11 +61,6 @@ public partial class Form1 : Form
 
 
             this.Controls.Add(_precisionElement);
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            this.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
         }
 
     }

@@ -121,7 +121,7 @@ namespace Accessiblee
         static void Main()
         {
             var host = new Host();
-
+             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -135,6 +135,7 @@ namespace Accessiblee
 
             //create the data stream
             var gazePointDataStream = host.Streams.CreateGazePointDataStream(Tobii.Interaction.Framework.GazePointDataMode.LightlyFiltered);
+
             gazePointDataStream.GazePoint((x, y, _) =>
             {
                 GetActionForInputState(currentState).Invoke(x, y);
@@ -147,6 +148,7 @@ namespace Accessiblee
 
         static Action<double, double> GetActionForInputState(InputState state)
         {
+            Debug.WriteLine(state);
             switch (state)
             {
                 case InputState.Cursor:
@@ -182,8 +184,7 @@ namespace Accessiblee
         {
             Console.WriteLine("Handling Precision Mode");
             // Add Precision handling logic here
-
-            ApplyMagnifyingEffect(x, y);
+            ApplyMagnifyingEffect(SmoothFilter(new Point(x, y)));
         }
 
         static void HandleInteraction(double x, double y)
@@ -201,10 +202,10 @@ namespace Accessiblee
 
         #region Magnification 
 
-        static void ApplyMagnifyingEffect(double x, double y)
+        static void ApplyMagnifyingEffect(Point point)
         {
             form._precisionElement.MovePrecision();
-            form.UpdateDotPosition((int)x, (int)y);
+            form.UpdateDotPosition(point);
 
             // Logic to apply a magnifying effect at the given x and y coordinates
             // This could involve creating a zoomed-in overlay of a part of the screen.
