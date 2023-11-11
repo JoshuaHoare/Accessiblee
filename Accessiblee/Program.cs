@@ -142,7 +142,7 @@ namespace Accessiblee
 
             Application.Run(form);
         }
-
+         
         #region Interaction States
 
         static Action<double, double> GetActionForInputState(InputState state)
@@ -199,10 +199,13 @@ namespace Accessiblee
 
         #endregion
 
-        #region Magnification
+        #region Magnification 
 
         static void ApplyMagnifyingEffect(double x, double y)
         {
+            form._precisionElement.MovePrecision();
+            form.UpdateDotPosition((int)x, (int)y);
+
             // Logic to apply a magnifying effect at the given x and y coordinates
             // This could involve creating a zoomed-in overlay of a part of the screen.
         }
