@@ -141,6 +141,7 @@ namespace Accessiblee
                 GetActionForInputState(currentState).Invoke(x, y);
             });
 
+            
             Application.Run(form);
         }
          
@@ -173,7 +174,7 @@ namespace Accessiblee
 
 
         static void HandleCursor(double x, double y)
-        {
+        {  
             Console.WriteLine("Handling Cursor Mode");
 
             moveCursor((int)x, (int)y);
@@ -184,7 +185,7 @@ namespace Accessiblee
         {
             Console.WriteLine("Handling Precision Mode");
             // Add Precision handling logic here
-            ApplyMagnifyingEffect(SmoothFilter(new Point(x, y)));
+            ApplyMagnifyingEffect(SmoothFilter(new Point((int)x, (int)y)));
         }
 
         static void HandleInteraction(double x, double y)

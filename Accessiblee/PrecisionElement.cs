@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using Tobii.Interaction; 
-
+ 
 namespace Accessiblee 
 {
     public class PrecisionElement :   Control
@@ -21,24 +21,21 @@ namespace Accessiblee
         private double DistanceTo(Point from, Point to)  
         {
             var result = Math.Sqrt(Math.Pow((from.X - to.X), 2) + Math.Pow((from.Y - to.Y) , 2 ));
-            return result; 
+            return result;   
         } 
          
         Point eyePosition;
-        Point cursorPosition;    
-        bool triggerMovement = false;   
+        Point cursorPosition;   
 
         protected override void OnPaint(PaintEventArgs pevent) 
         { 
             eyePosition = form.point;   
             cursorPosition = Cursor.Position;
 
-            Debug.WriteLine("ff");
 
-            if (DistanceTo(Location, eyePosition) <= 150)  
+            if (DistanceTo(Location, eyePosition) <= 200)  
             { 
-                Debug.WriteLine("buffered"); 
-                triggerMovement = false;
+                Debug.WriteLine("buffered");
             }
             else
             {
@@ -65,6 +62,14 @@ namespace Accessiblee
 
         public void MovePrecision()
         {
+            if (DistanceTo(Location, eyePosition) <= 200)
+            {
+                Debug.WriteLine("buffered");
+            }
+            else
+            {
+                Location = new Point(form.x - (Width / 2), form.y - (Width / 2));
+            }
         }
 
         protected override void OnResize(EventArgs e)

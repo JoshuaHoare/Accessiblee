@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Accessiblee
+namespace Accessiblee  
 {  
 public partial class Form1 : Form
     {
@@ -21,7 +21,7 @@ public partial class Form1 : Form
 
          public Form1()
         {
-         //   InitializeComponent();  
+            InitializeComponent();  
             InitializePrecisionElement();
             this.Paint += new PaintEventHandler(Form1_Paint); // Su bscribe to the Paint event
         }   
@@ -42,7 +42,7 @@ public partial class Form1 : Form
         }
          // Method to update  the dot's position and repaint
         public void UpdateDotPosition(Point _point)  
-        {
+        {  
             this.point = _point;
             x = _point.X;
             y = _point.Y;
@@ -52,12 +52,14 @@ public partial class Form1 : Form
             // This will trigger the Paint event
         } 
         
-        public PrecisionElement _precisionElement; 
-             
+        public PrecisionElement _precisionElement;
+
         private void InitializePrecisionElement()
         {
-            _precisionElement = new PrecisionElement(this);
-
+            if (_precisionElement == null)
+                _precisionElement = new PrecisionElement(this);
+            else
+                _precisionElement.MovePrecision();
 
 
             this.Controls.Add(_precisionElement);

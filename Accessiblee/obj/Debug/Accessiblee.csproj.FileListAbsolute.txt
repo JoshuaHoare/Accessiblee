@@ -1,8 +1,6 @@
 D:\Accessiblee\Accessiblee\bin\Debug\Accessiblee.exe.config
 D:\Accessiblee\Accessiblee\bin\Debug\Accessiblee.exe
 D:\Accessiblee\Accessiblee\bin\Debug\Accessiblee.pdb
-D:\Accessiblee\Accessiblee\obj\Debug\Accessiblee.csproj.AssemblyReference.cache
-D:\Accessiblee\Accessiblee\obj\Debug\Accessiblee.csproj.SuggestedBindingRedirects.cache
 D:\Accessiblee\Accessiblee\obj\Debug\Accessiblee.Properties.Resources.resources
 D:\Accessiblee\Accessiblee\obj\Debug\Accessiblee.csproj.GenerateResource.cache
 D:\Accessiblee\Accessiblee\obj\Debug\Accessiblee.csproj.CoreCompileInputs.cache
