@@ -15,13 +15,13 @@ public partial class Form1 : Form
     {
         public Point point;
         public int x;
-        public int y;
+        public  int y;
 
         private int dotSize = 10; // Size of the dot
 
          public Form1()
         {
-            InitializeComponent();  
+         //   InitializeComponent();  
             InitializePrecisionElement();
             this.Paint += new PaintEventHandler(Form1_Paint); // Su bscribe to the Paint event
         }   

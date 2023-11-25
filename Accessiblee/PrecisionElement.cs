@@ -11,21 +11,21 @@ namespace Accessiblee
     {     
         Form1 form; 
 
-        public PrecisionElement(Form1 _form) 
+        public PrecisionElement(Form1 _form)  
         {    
                  
             form = _form; 
             Size = new System.Drawing.Size(150, 150);      
-        }  
+        }     
           
         private double DistanceTo(Point from, Point to)  
         {
             var result = Math.Sqrt(Math.Pow((from.X - to.X), 2) + Math.Pow((from.Y - to.Y) , 2 ));
             return result; 
-        }
-
+        } 
+         
         Point eyePosition;
-        Point cursorPosition;   
+        Point cursorPosition;    
         bool triggerMovement = false;   
 
         protected override void OnPaint(PaintEventArgs pevent) 
