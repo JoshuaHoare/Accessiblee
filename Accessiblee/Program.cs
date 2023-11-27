@@ -13,7 +13,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Accessiblee
 {
-    enum InputState
+    public enum InputStates
     {
         Cursor,
         Precision,
@@ -32,10 +32,11 @@ namespace Accessiblee
         private static bool enableGazeMouseControl = false;
         private static int currentFilter;
 
-        private static Form1 form;
+        private static Canvas canvas;
+        public static AccessibilityController accessibilityController;
         private static IKeyboardMouseEvents m_GlobalHook;
 
-        public static InputState currentState;
+        public static InputStates currentState;
 
         private static void GlobalHookKeyDown(object sender, KeyEventArgs e)
         {
@@ -117,48 +118,40 @@ namespace Accessiblee
             currentFilter = (int)filters.Smooth;
         }
 
-        [STAThread]
         static void Main()
         {
-            var host = new Host();
-             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            form = new Form1();
+            canvas = new Canvas();
+
+            accessibilityController = new AccessibilityController(canvas);
+
 
             subscribeGlobalKeyHook();
 
-            currentState = InputState.Cursor; // Example state
+            currentState = InputStates.Cursor; // Example state
 
             var action = GetActionForInputState(currentState);
 
-            //create the data stream
-            var gazePointDataStream = host.Streams.CreateGazePointDataStream(Tobii.Interaction.Framework.GazePointDataMode.LightlyFiltered);
-
-            gazePointDataStream.GazePoint((x, y, _) =>
-            {
-                GetActionForInputState(currentState).Invoke(x, y);
-            });
-
             
-            Application.Run(form);
+            Application.Run(canvas);
         }
          
         #region Interaction States
 
-        static Action<double, double> GetActionForInputState(InputState state)
+        static Action<double, double> GetActionForInputState(InputStates state)
         {
             Debug.WriteLine(state);
             switch (state)
             {
-                case InputState.Cursor:
+                case InputStates.Cursor:
                     return HandleCursor;
 
-                case InputState.Precision:
+                case InputStates.Precision:
                     return HandlePrecision;
 
-                case InputState.Interaction:
+                case InputStates.Interaction:
                     return HandleInteraction;
 
                 default:
@@ -166,10 +159,10 @@ namespace Accessiblee
             }
         }
 
-        static public InputState GetNextEnumValue(InputState current)
+        static public InputStates GetNextEnumValue(InputStates current)
         {
-            int nextValue = ((int)current + 1) % Enum.GetValues(typeof(InputState)).Length;
-            return (InputState)nextValue;
+            int nextValue = ((int)current + 1) % Enum.GetValues(typeof(InputStates)).Length;
+            return (InputStates)nextValue;
         }
 
 
@@ -205,8 +198,8 @@ namespace Accessiblee
 
         static void ApplyMagnifyingEffect(Point point)
         {
-            form._precisionElement.MovePrecision();
-            form.UpdateDotPosition(point);
+            //canvas._precisionElement.MovePrecision();
+            canvas.UpdateDotPosition(point);
 
             // Logic to apply a magnifying effect at the given x and y coordinates
             // This could involve creating a zoomed-in overlay of a part of the screen.

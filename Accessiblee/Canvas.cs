@@ -10,19 +10,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Accessiblee  
-{  
-public partial class Form1 : Form
+{
+    public partial class Canvas : Form
     {
         public Point point;
         public int x;
-        public  int y;
+        public int y;
+
 
         private int dotSize = 10; // Size of the dot
 
-         public Form1()
+         public Canvas()
         {
-            InitializeComponent();  
-            InitializePrecisionElement();
+            //Setup the canvas
+            Initialise();
+
             this.Paint += new PaintEventHandler(Form1_Paint); // Su bscribe to the Paint event
         }   
 
@@ -48,22 +50,8 @@ public partial class Form1 : Form
             y = _point.Y;
 
             this.Invalidate();
-            _precisionElement.Invalidate();
             // This will trigger the Paint event
         } 
         
-        public PrecisionElement _precisionElement;
-
-        private void InitializePrecisionElement()
-        {
-            if (_precisionElement == null)
-                _precisionElement = new PrecisionElement(this);
-            else
-                _precisionElement.MovePrecision();
-
-
-            this.Controls.Add(_precisionElement);
-        }
-
     }
 }

@@ -13,4 +13,5 @@ D:\Accessiblee\Accessiblee\bin\Debug\Tobii.Interaction.Net.dll
 D:\Accessiblee\Accessiblee\bin\Debug\WindowsInput.dll
 D:\Accessiblee\Accessiblee\bin\Debug\WindowsInput.xml
 D:\Accessiblee\Accessiblee\obj\Debug\Accessiblee.csproj.CopyComplete
-D:\Accessiblee\Accessiblee\obj\Debug\Accessiblee.Form1.resources
+D:\Accessiblee\Accessiblee\obj\Debug\Accessiblee.csproj.AssemblyReference.cache
+D:\Accessiblee\Accessiblee\obj\Debug\Accessiblee.Canvas.resources
